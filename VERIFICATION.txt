@@ -17,6 +17,9 @@ Browser checks at http://127.0.0.1:5059:
 
 Figma: 9 editable screens, linked Material 3 buttons/fields, Roboto, no UI bitmap overlays. Both boards visually checked after wrapping-text repair. PNGs exported to evidence/.
 
-Not yet verified: native device layout/back behavior, real notification permission/receipt, native release builds. No public repository, deployment or assessment submission.
+Native checks: Expo Go SDK 54 on an iOS 27 simulator; signup required-field validation; login layout; home/detail/menu navigation; marked Morning walk complete; Saved progress read back AsyncStorage; simulator restart restored the session and 1 of 3 completions; optional local notification produced a real system banner and Reminder received status. Actual screenshots are in evidence/.
+
+Public source: https://github.com/yaroslavsts/habit-garden-mobile-capstone
+Not yet verified: Android or physical-device behavior, native release builds, app-store distribution. Assessment remains a draft.
 
 The screenshots contain generated demonstration data. notifications-web-limitation.png is not evidence of a delivered OS alert.
