@@ -1,0 +1,11 @@
+import React,{useState,useEffect} from 'react';
+import {Platform} from 'react-native';
+import {Label,Card,Action,ErrorMessage} from './ui';
+let nativeNotifications=null;
+async function notifications(){if(!nativeNotifications){nativeNotifications=await import('expo-notifications');nativeNotifications.setNotificationHandler({handleNotification:async()=>({shouldShowBanner:true,shouldShowList:true,shouldPlaySound:false,shouldSetBadge:false})});}return nativeNotifications;}
+export default function NotificationsScreen(){
+  const [status,setStatus]=useState('No reminder scheduled.'),[error,setError]=useState(''),[busy,setBusy]=useState(false);
+  useEffect(()=>{let active=true,subscription; if(Platform.OS!=='web')notifications().then(n=>{if(active)subscription=n.addNotificationReceivedListener(()=>setStatus('Reminder received.'));}).catch(()=>{});return()=>{active=false;subscription?.remove();};},[]);
+  async function schedule(){setBusy(true);setError('');try{const n=await notifications();if(Platform.OS==='android')await n.setNotificationChannelAsync('habits',{name:'Habit reminders',importance:n.AndroidImportance.DEFAULT});let permission=await n.getPermissionsAsync();if(permission.status!=='granted')permission=await n.requestPermissionsAsync();if(permission.status!=='granted')throw new Error('Permission was not granted. Enable notifications in device settings if you want reminders.');await n.scheduleNotificationAsync({content:{title:'Your garden is waiting',body:'Take one small step for your habit today.'},trigger:{type:n.SchedulableTriggerInputTypes.TIME_INTERVAL,seconds:2,channelId:Platform.OS==='android'?'habits':undefined}});setStatus('Test reminder scheduled in 2 seconds.');}catch(e){setError(e.message||'Unable to schedule the reminder.');}finally{setBusy(false);}}
+  return <><Label large>Notifications</Label><Card><Label>A gentle reminder</Label><Label muted>Keep your habit in mind with a local test reminder.</Label></Card>{Platform.OS==='web'?<Label muted>Web preview: OS notifications are unavailable. Run on Android or iOS to test.</Label>:<><Label muted>Permission is requested only when you enable a reminder.</Label><Action label={busy?'Scheduling…':'Enable & send test reminder'} onPress={schedule} disabled={busy}/><Label>{status}</Label></>}<ErrorMessage>{error}</ErrorMessage></>;
+}

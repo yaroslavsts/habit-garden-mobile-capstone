@@ -1,0 +1,22 @@
+8 October 2026 — local draft verification
+
+Expo export --platform all: passed Web bundle and Android/iOS Hermes JS bundles.
+This does not build an APK/IPA or establish that native UI works on a device.
+Metro warns about a @noble/hashes crypto.js export fallback; bundles complete and browser password derivation was exercised successfully.
+
+Browser checks at http://127.0.0.1:5059:
+- Empty login rejected; empty signup rejected.
+- Created fictional local test profile; no real user account or service credentials used.
+- Marked a habit complete; reload restored 1 of 3 done.
+- API returned a real quote and author with source label.
+- Display name changed and dark preference retained after reload.
+- Empty habit rejected; new habit retained after reload (1 of 4 done).
+- Wrong password rejected; correct test password restored the account and habits.
+- Second fictional profile started with independent 0 of 3 progress; first profile remained 1 of 4.
+- Web notifications screen correctly reports unsupported OS alerts.
+
+Figma: 9 editable screens, linked Material 3 buttons/fields, Roboto, no UI bitmap overlays. Both boards visually checked after wrapping-text repair. PNGs exported to evidence/.
+
+Not yet verified: native device layout/back behavior, real notification permission/receipt, native release builds. No public repository, deployment or assessment submission.
+
+The screenshots contain generated demonstration data. notifications-web-limitation.png is not evidence of a delivered OS alert.

@@ -1,0 +1,16 @@
+Habit Garden — publishing and marketing plan (proposal, not executed)
+
+Audience: people who want a simple private daily habit checklist.
+Value proposition: turn a small daily action into visible progress without a cloud account.
+Store draft: "Grow your daily habits with a simple checklist, progress history, a fresh quote and optional local reminders. Your garden is stored on your device."
+
+Before release:
+1. Test login, account isolation, persistence, accessibility, back navigation and notification permission/receipt on Android and iOS devices.
+2. Review local prototype authentication and decide whether to remove account passwords or implement a production backend.
+3. Add automated regression tests, data export/recovery and a documented storage migration policy.
+4. Audit dependency licenses, implement a real privacy policy describing local data and requests to DummyJSON, and prepare accurate screenshots.
+5. Create a public source repository only after reviewing files for secrets and approving publication.
+6. Configure unique application identifiers, icons, release signing and developer accounts; review current store requirements and costs before any purchase or submission.
+7. Run a small pilot, collect voluntary feedback, fix issues, then propose a release.
+
+Marketing proposal: short demo showing a habit added, completed and restored after reopening; clear website copy; no claims of health benefits, artificial intelligence or cloud synchronization.
